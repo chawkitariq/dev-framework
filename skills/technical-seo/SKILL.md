@@ -6,12 +6,12 @@ description: Technical SEO checklist for a static site or landing page - meta ta
 # Technical SEO checklist
 
 ## Tags and metadata
-- `<title>` at most 60 characters; meta description at most 155.
-- Open Graph and Twitter card tags; share image 1200x630.
+- `<title>` about 60 characters at most; meta description about 155 (common guidance: engines truncate by pixel width, not a hard limit).
+- Open Graph and Twitter card tags; share image at the recommended ratio (1200x630 is the common size; check current platform docs).
 - `lang` attribute on `<html>`, exactly one `h1`, favicon set and web manifest.
 
 ## Structured data
-- JSON-LD matching the page: Person or Organization, ProfessionalService, WebSite, WebPage.
+- JSON-LD matching the page's real subject, with fitting schema.org types (e.g. Person or Organization, a service/business subtype, WebSite, WebPage). Never mark up content that is not visible on the page.
 
 ## Crawling and URLs
 - `canonical`, `robots.txt` and `sitemap.xml` generated from one `site_url` setting and skipped while it is unset, so no wrong URLs go live.
