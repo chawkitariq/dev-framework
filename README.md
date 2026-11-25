@@ -5,6 +5,8 @@ Reusable [Agent Skills](https://code.claude.com/docs/en/skills) distilled from r
 | Skill | Use it when |
 |---|---|
 | [`agent-workflow-lessons`](skills/agent-workflow-lessons/SKILL.md) | Starting any multi-step dev, deploy or infra task: debugging order, secrets handling, external actions, delegation, verification |
+| [`agent-team-orchestration`](skills/agent-team-orchestration/SKILL.md) | Running several subagents on one build: splitting, briefs, model choice, verification in a real browser, repo governance |
+| [`premium-landing-workflow`](skills/premium-landing-workflow/SKILL.md) | Building a premium static landing page: measured reference audit, copy first, parallel section writers, quality loop, independent review, sign-off |
 | [`cloudflare-ops`](skills/cloudflare-ops/SKILL.md) | Deploying a Worker to a custom domain, managing DNS/WAF with `cf`, restricting access by IP, auditing a zone's security |
 | [`free-hosting-architecture`](skills/free-hosting-architecture/SKILL.md) | Choosing free or cheap hosting, or re-architecting an app for serverless |
 
