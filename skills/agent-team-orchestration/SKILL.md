@@ -5,7 +5,7 @@ description: How the main model runs a team of subagents on a multi-file build â
 
 # Agent team orchestration
 
-Basics of delegation and secrets are in `agent-workflow-lessons`; this skill adds team-level practice. Example application: `premium-landing-workflow`.
+Basics of delegation and secrets are in `agent-workflow-lessons`; this skill adds team-level practice. Example application: `premium-landing-workflow` (see uiux-framework).
 
 ## Steering
 - The main model understands, splits, arbitrates and verifies; subagents execute. Strongest model for design, high-level writing and critical review; mid model for building; cheapest for mechanical work (search, extraction, formatting).
