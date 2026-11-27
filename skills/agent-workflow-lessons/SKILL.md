@@ -29,6 +29,8 @@ description: General working rules for agent-driven dev work — request interpr
 
 ## Before claiming a limitation
 - Check the tool's current docs or search ("does X have a CLI for Y in <year>?"). New official tools supersede memory.
+- Prefer a product's CLI or API over an MCP server. A package named "...-mcp" may also ship a CLI: read its `bin` field (`npm view <pkg> bin`) before concluding there is none.
+- Agent-tool `setup` commands (e.g. `<tool> setup --claude`) may sign in to an account without asking and write skills/rules that call `npx <tool>@latest`, bypassing the pinned version. Read what they installed, report the sign-in, and re-apply local fixes after any re-run.
 
 ## External / destructive actions
 - Inspect before deleting (DNS records, branches, files); show what you'll delete; get one confirmation per new kind of change. Approval for one change does not cover the next.
@@ -38,6 +40,7 @@ description: General working rules for agent-driven dev work — request interpr
 - Before commit/push/repo creation: check `git config user.name/user.email` (noreply if required) and `gh auth status` (right account, right env WSL/Windows). Stage by explicit path, never a whole folder; review `git status` for unexpected files.
 - When asked to "commit": run `git status`/`git log` first, another session may already have committed.
 - Push rejected: fetch + rebase, never force. If an update pulls from the remote, push before saying "update now".
+- Submodule change = two pushes: push the submodule repo, then commit and push the new pointer in the parent repo; otherwise the parent stays on the old commit. A fresh submodule checkout is a detached HEAD: `git switch main` before committing in it.
 - Permission/classifier refusal: don't work around it; explain, ask, relaunch after an explicit yes. Never loosen your own permissions.
 - Rebuilding a container/service: restart via its supervisor (pm2, systemd) so it keeps its env; announce downtime risk.
 - Don't poll a production site with curl bursts (bot challenge 403); use the platform CLI's deployment status.
