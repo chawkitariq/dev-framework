@@ -20,6 +20,9 @@ Basics of delegation and secrets are in `agent-workflow-lessons`; this skill add
 - Subagents return reports as text (the orchestrator saves them). Blocked by a permission = stop and say so; the orchestrator relays a decision the user already gave, never bypasses.
 - WebFetch summarises and truncates: ask what was read in full, exact quotes for numbers, local extraction (pdftotext) for critical data.
 - Duplicate agent reports: acknowledge in one line, don't redo.
+- Check that an agent really did the requested work: read its report for what is missing (e.g. a designer told to study sites who described them from memory without opening them) and re-run it.
+- Layered changes: sequence them (cross-cutting migration first, then back end, then front end); two agents never edit the same files in parallel. Pass the back end's exact reported API contract to the front-end agent.
+- An agent stopped by a usage limit is resumed with SendMessage (keeps context), not replaced by a new agent.
 
 ## Verification
 - An agent report is not proof. Check in a real browser or a real run. Typical bugs only found this way: broken centering, stale cached CSS, a fixed-position element trapped by a parent's `backdrop-filter`/`transform`.

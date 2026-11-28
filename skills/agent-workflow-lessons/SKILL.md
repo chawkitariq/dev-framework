@@ -53,7 +53,9 @@ description: General working rules for agent-driven dev work — request interpr
 - PowerShell scripts meant for both 5.1 and 7: ASCII only, no hard-coded user path (`$HOME`, env vars); `.sh` files keep LF endings. Never overwrite an existing user config file without consent; make scripts idempotent.
 - Never delete/recreate a WSL distro that exists: it holds user data. Enabling features (WSL, Sandbox) may need admin + reboot, to be done by the user.
 - Untrusted binary or irreversible test: run it in Windows Sandbox (network off, input read-only), read the report, then decide on the host.
-- Bash heredocs/awk/sed may silently eat `\` and `$` or write nothing: prefer Write/Edit or a Python script, then check the file exists and is non-empty.
+- Bash heredocs/awk/sed may silently eat `\` and `$` or write nothing: prefer Write/Edit or a Python script, then check the file exists and is non-empty. Backslashes are also altered in non-raw Python strings (`\r\n` inside a JS regex): use the Write/Edit tool or raw strings `r"""..."""`. JSON containing Windows paths: write it with Write, never sed/heredoc.
+- Paths over 260 characters (deep repo): native tools fail with a misleading ENOENT (Prisma schema-engine, esbuild postinstall/exe). Workaround: `subst W: "<root>"` and run every command from `W:`; a server started by another process must redo it (`if not exist W:\ subst W: "<root>"`). Real fix: move the project to a short path. If a postinstall fails: `pnpm install --ignore-scripts`, then run the generator (`prisma generate`) by hand.
+- A running dev server locks native binaries (e.g. Prisma query-engine DLL): `generate` fails with EPERM although the types are regenerated. Stop the server for a clean generate.
 - Text replacements: detect CRLF/LF and accents first; script with `assert s.count(old)==1` so a miss fails loudly; absolute paths in batch scripts.
 - Foreground `sleep` may be blocked: use notifications or a monitor, not polling loops.
 - Missing system lib without sudo: `apt-get download` + extract to `~/.local` + `LD_LIBRARY_PATH` recorded in an env.sh.
